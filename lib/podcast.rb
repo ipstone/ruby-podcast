@@ -5,6 +5,7 @@ require 'rss/0.9'
 require 'mp3info'
 require 'rss/maker'
 require 'uri'
+require 'cgi'
 
 module Podcast 
 
@@ -83,9 +84,9 @@ module Podcast
           item.title = mp3
           ## add a base url 
           if base != ''
-            link = base + '/' + URI::escape(mp3.path)
+            link = base + '/' + CGI::escape(mp3.path)
           else 
-            link = URI::escape(mp3.path)
+            link = CGI::escape(mp3.path)
           end
           item.link = link
           item.date = mp3.mtime
